@@ -4,8 +4,14 @@ from ueb.b.aufg12_comp import comp
 
 # alle Zusammenhangskomponenten eines Digraphen 
 def comp_di(G):
-    # todo
-    return []
+    # lt. Aufgabenstellung nicht starke zusammenhangskomponente
+    G_ungerichtiet = [set() for _ in G]
+    for u,U in enumerate(G):
+        for v in U:
+            G_ungerichtiet[v].add(u)
+            G_ungerichtiet[u].add(v)
+        
+    return comp(G_ungerichtiet)
     
 # Laufzeit ?
 
