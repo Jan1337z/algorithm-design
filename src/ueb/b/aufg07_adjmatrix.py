@@ -1,14 +1,18 @@
-
 # Adjazenzmengen nach Adjazenzmatrix in O(m^2)=O(|Ausgabe|) 
 def to_matrix(G):
-    A = []
-    # todo
+    A = [[0 for _ in G] for _ in G]
+    for u,V in enumerate(G):
+        for v in V:
+            A[u][v] = 1
     return A
 
 # Adjazenzmatrix nach Adjazenzmengen in O(m^2)=O(n)  
 def from_matrix(A):
-    G = []
-    # todo
+    G = [set() for _ in A]
+    for u,U in enumerate(A):
+        for v,isAdjacent in enumerate(U):
+            if(isAdjacent):
+                G[u].add(v)
     return G
 
 # Graph als Adjazenzmatrix
