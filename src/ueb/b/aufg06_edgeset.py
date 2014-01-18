@@ -1,15 +1,20 @@
 
-
 # Kantenmenge E fuer Graphen  
 def edgeset(G):
     E = set()                   
-    # todo
+    for i,u in enumerate(G):
+        for v in u:
+            #print("{0},{1}".format(i,v))
+            E.add(frozenset({i,v}))      
     return E
 
 # Kantenmenge E fuer Digraphen 
 def edgeset_di(G):
     E = set()     
-    # todo
+    for i,u in enumerate(G):
+        for v in u:
+            #print("{0},{1}".format(i,v))
+            E.add((i,v))
     return E
 
 
