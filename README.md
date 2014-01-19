@@ -1,7 +1,7 @@
-#Algorithm-Design / Algorithmen-Design#
+#Algorithmic-Design / Algorithmen-Design#
 ================
 **English:**
-In this repository I provide the algorithms that are part of the *Algorithm Design* course at the *University of Applied Science Trier*.
+In this repository I provide the algorithms that are part of the *Algorithmic Design* course at the *University of Applied Science Trier*.
 
 **Deutsch:**
 In diesem Repository stelle ich die Algorithmen zur Verfuegung, die im Zuge der Uebungen im Fach *Algorithmen-Design* an der *Hochschule Trier* implementiert werden musst.
