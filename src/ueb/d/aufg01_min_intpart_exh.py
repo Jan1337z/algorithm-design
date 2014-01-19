@@ -3,15 +3,19 @@
 
 # ist Intervallmenge M kompatibel?
 def compatible(L,M):
-    # todo
+    deadline = -1
+    for i in M:
+        s,f = L[i]
+        if s < deadline: return False
+        deadline = f
     return True
 
 # Bsp
 L = [(0,3),(0,4),(4,6),(5,7),(8,10),(0,12),(9,13),(15,16),(14,17)]
-compatible(L,{0,2,5})
-compatible(L,{0,3,4,7})
-compatible(L,{1,2})
-compatible(L,set())
+print (compatible(L,{0,2,5}))
+print (compatible(L,{0,3,4,7}))
+print (compatible(L,{1,2}))
+print (compatible(L,set()))
 
 
 # zulaessige Loesung:
