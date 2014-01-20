@@ -31,5 +31,5 @@ def define_G():
     return G
 
 G = define_G()
-print(comp(G))
+#print(comp(G))
 

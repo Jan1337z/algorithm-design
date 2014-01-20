@@ -39,6 +39,6 @@ def define_G():
         ]
     return G
 
-G = define_G()
-print(kruskal(G))
+# G = define_G()
+# print(kruskal(G))
 
