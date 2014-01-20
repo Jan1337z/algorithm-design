@@ -13,17 +13,24 @@ def prim_pq(G):
     p = [None]*m                # Nachbarknoten merken
     Q = [(d[u],u) for u in range(m)]   # alle Knoten
     T = set()                   # Ergebnis: Spannbaum als Kantenmenge
-    c = 0                       #           und dessen Kosten
+    c = 0  
+    reached = [False] *m                     #           und dessen Kosten
     while Q:
         # Auswahl von v mit kleinstem d-Wert
         (_,v) = heappop(Q)
+        
+        if not reached[v]:
+            reached[v] = True
+        else:
+            continue
+        
         # Kante in den Spannbaum einfuegen
         T.add(frozenset((p[v],v)))
         c += d[v]
         # Kosten fuer die Anbindung der Nachbarn von v aktualisieren
         for u in set(G[v]) & {v for _,v in Q}:
             alt = G[v][u]                 # alternative Kosten
-            if alt < d[u]:
+            if d[u]==None or alt < d[u]:
                 heappush(Q,(alt,u))
                 d[u] = alt
                 p[u] = v                  # Nachbar merken
