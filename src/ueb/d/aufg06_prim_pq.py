@@ -19,21 +19,17 @@ def prim_pq(G):
         # Auswahl von v mit kleinstem d-Wert
         (_,v) = heappop(Q)
         
-        if not reached[v]:
-            reached[v] = True
-        else:
-            continue
-        
-        # Kante in den Spannbaum einfuegen
-        T.add(frozenset((p[v],v)))
-        c += d[v]
-        # Kosten fuer die Anbindung der Nachbarn von v aktualisieren
-        for u in set(G[v]) & {v for _,v in Q}:
-            alt = G[v][u]                 # alternative Kosten
-            if d[u]==None or alt < d[u]:
-                heappush(Q,(alt,u))
-                d[u] = alt
-                p[u] = v                  # Nachbar merken
+        if not frozenset((p[v],v)) in T:
+            # Kante in den Spannbaum einfuegen
+            T.add(frozenset((p[v],v)))
+            c += d[v]
+            # Kosten fuer die Anbindung der Nachbarn von v aktualisieren
+            for u in set(G[v]) & {v for _,v in Q}:
+                alt = G[v][u]                 # alternative Kosten
+                if d[u]==None or alt < d[u]:
+                    heappush(Q,(alt,u))
+                    d[u] = alt
+                    p[u] = v                  # Nachbar merken
     return T-{frozenset((None,0))}, c                # erster Knoten 0 hat keinen Vorgaenger
 
    
