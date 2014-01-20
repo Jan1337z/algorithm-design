@@ -8,28 +8,27 @@ def prim_pq(G):
     m = len(G)
     # (geschaetzte) Kosten für die Anbindung von Knoten an den Spannbaum
     # mittels einer weiteren Kante
-    d = [float("inf")]*m               
-    d[0] = 0                    # beginne mit bel. Knoten, hier 0
+    
     p = [None]*m                # Nachbarknoten merken
-    Q = [(d[u],u) for u in range(m)]   # alle Knoten
+    Q = [(float("inf"),u) for u in range(1,m)]
+    heappush(Q,(0,0)) # startknoten hinzufuegen
     T = set()                   # Ergebnis: Spannbaum als Kantenmenge
     c = 0  
     reached = [False] *m                     #           und dessen Kosten
     while Q:
         # Auswahl von v mit kleinstem d-Wert
-        (_,v) = heappop(Q)
+        (c_v,v) = heappop(Q)
         
         if not frozenset((p[v],v)) in T:
             # Kante in den Spannbaum einfuegen
             T.add(frozenset((p[v],v)))
-            c += d[v]
+            c += c_v
             # Kosten fuer die Anbindung der Nachbarn von v aktualisieren
             for u in set(G[v]) & {v for _,v in Q}:
                 alt = G[v][u]                 # alternative Kosten
-                if d[u]==None or alt < d[u]:
+                if p[u] == None or alt < G[p[u]][u]:
                     heappush(Q,(alt,u))
-                    d[u] = alt
-                    p[u] = v                  # Nachbar merken
+                    p[u] = v 
     return T-{frozenset((None,0))}, c                # erster Knoten 0 hat keinen Vorgaenger
 
    
