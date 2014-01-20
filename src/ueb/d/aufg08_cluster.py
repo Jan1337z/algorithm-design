@@ -1,19 +1,36 @@
-
 # l-CLUSTERING
 from ueb.d.aufg07_kruskal import kruskal
 from ueb.b.aufg12_comp import comp
 
-def cluster(m,d,l):
+def cluster(m,d,l):  
     # 1. vollstaendigen Graph mit m Knoten, m^2 Kanten und Kosten d[u,v] konstruieren
     #
+    G = [{} for _ in range(m)]
+    for u in range(m):
+        for v in range(m):
+            if d[u,v] != 0:
+                G[u][v] = d[u,v]
+    
     # 2. Alg. kruskal unveraendert aufrufen
-    #
+    T,_ = kruskal(G)
+    
     # 3. die l-1 teuersten Kanten löschen
-    #
+    if l>1:
+        def f(x) : u,v = x;  return d[u,v]
+        for v in sorted(T, key=f)[-(l-1):]:
+            T.remove(v)
+ 
     # 4. Zush.komponenten bestimmen,  via B.12 (comp)
     # dazu Graph mit allen Knoten konstuieren und Kanten einf.
     #
-    return []
+    
+    G = [set() for _ in range(m)]  
+    for u,v in T:
+        G[u].add(v)
+        G[v].add(u)
+    C = comp(G)
+    
+    return C
 
 
 # Distanzfunktion symmetrisch, Diag. 0
@@ -48,9 +65,7 @@ def define_d():
 
 d = define_d()
 m = 5
-for l in range(1,6):
-    print(cluster(m,d,l))
-
-
+l = 2
+print(cluster(m,d,l))
 
 
