@@ -7,10 +7,10 @@ import heapq
 
 def dijkstra_pq(G,s):
     m = len(G)
-    d = [None]*m 
+    d = [float("inf")]*m 
     p = [None]*m            
     d[s] = 0     
-    Q = [(0,s)]
+    Q = [(d[x],x) for x in range(m)]
     
     while Q:
         c,v = heappop(Q) 
