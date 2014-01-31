@@ -14,7 +14,7 @@ def prim_pq(G):
     heappush(Q,(0,0)) # startknoten hinzufuegen
     T = set()                   # Ergebnis: Spannbaum als Kantenmenge
     c = 0  
-    reached = [False] *m                     #           und dessen Kosten
+    
     while Q:
         # Auswahl von v mit kleinstem d-Wert
         (c_v,v) = heappop(Q)
