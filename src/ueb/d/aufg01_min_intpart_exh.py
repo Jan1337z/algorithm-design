@@ -4,9 +4,11 @@
 # ist Intervallmenge M kompatibel?
 def compatible(L,M):
     deadline = -1
-    for i in sorted(M):
+    for i in M:
         s,f = L[i]
-        if s < deadline: return False
+        if s < deadline: 
+            print (L[i],deadline)
+            return False
         deadline = f
     return True
 
